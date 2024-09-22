@@ -23,6 +23,10 @@ Vagrant.configure("2") do |config|
     vb.gui = false
     vb.cpus = 1
     vb.memory = "6000"
+    vb.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
+    vb.customize ["modifyvm", :id, "--paravirtprovider", "kvm"]
+    vb.customize ["modifyvm", :id, "--nestedpaging", "on"]
   end
 
   config.vm.provision "shell" do |s|
